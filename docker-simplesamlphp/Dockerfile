@@ -40,6 +40,6 @@ WORKDIR /srv/simplesaml
 
 VOLUME ["/srv/simplesaml"]
 
-COPY entrypoint.sh /entrypoint.sh
+COPY docker-entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]

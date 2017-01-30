@@ -316,7 +316,7 @@ $config = array(
      */
     'session.phpsession.cookiename' => {{ if .session_phpsession_cookiename }}'{{ .session_phpsession_cookiename }}'{{ else }}null{{ end }},
     'session.phpsession.savepath' => {{ if .session_phpsession_savepath }}'{{ .session_phpsession_savepath }}'{{ else }}null{{ end }},
-    'session.phpsession.httponly' => {{ .session_phpsession_httponly | yesno "true" "false" }}.,
+    'session.phpsession.httponly' => {{ .session_phpsession_httponly | yesno "true" "false" }},
 
     /*
      * Option to override the default settings for the auth token cookie
@@ -338,7 +338,7 @@ $config = array(
      */
     'session.rememberme.enable' => {{ .session_rememberme_enable | yesno "true" "false" }},
     'session.rememberme.checked' => {{ .session_rememberme_checked | yesno "true" "false" }},
-    'session.rememberme.lifetime' => {{ .session_rememberme_lifetime | yesno "true" "false" }},
+    'session.rememberme.lifetime' => {{ .session_rememberme_lifetime }},
 
     /**
      * Custom function for session checking called on session init and loading.
