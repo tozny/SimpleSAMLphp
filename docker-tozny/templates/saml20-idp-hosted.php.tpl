@@ -10,7 +10,7 @@ $metadata['{{ $metadata.entityid }}'] = array(
     // The hostname of the server this SAML entity will use.
     'host'        =>  '{{ $metadata.host }}',
     // X.509 key and certificate. Relative to the /cert directory.
-    'priatekey'   => 'server.pem',
+    'privatekey'  => 'server.pem',
     'certificate' => 'server.crt',
     'auth'        => '{{ $metadata.authsource }}',
 );

@@ -13,6 +13,9 @@ ENV SSP_VERSION 1.14.11
 ENV SSP_HASH 4899cae8e66967ad9fbf8dd0efe605b3a7c0f7a7c2c7a09e61470d623ca3a878
 
 RUN set -x \
+    && apk add --no-cache openssl
+
+RUN set -x \
     && buildDeps="ca-certificates wget" \
     && apk add --no-cache $buildDeps && update-ca-certificates \
     && rm -rf /var/cache/apk/* \
@@ -21,19 +24,6 @@ RUN set -x \
     && tar -xzf /tmp/simplesamlphp-$SSP_VERSION.tar.gz -C /tmp \
     && mv /tmp/simplesamlphp-$SSP_VERSION /srv/simplesaml \
     && rm /tmp/simplesamlphp-$SSP_VERSION.tar.gz \
-    && apk del $buildDeps
-
-ENV TOZNYAUTH_VERSION 1.0.0
-
-RUN set -x \
-    && buildDeps="ca-certificates wget" \
-    && apk add --no-cache $buildDeps && update-ca-certificates \
-    && rm -rf /var/cache/apk/* \
-    && wget https://github.com/tozny/simplesamlphp-toznyauth-external/releases/download/$TOZNYAUTH_VERSION/toznyauth.tgz -O /tmp/toznyauth.tgz \
-    && tar -xzf /tmp/toznyauth.tgz -C /tmp \
-    && mv /tmp/toznyauth /srv/simplesaml/modules/toznyauth \
-    && rm /tmp/toznyauth.tgz \
-    && touch /srv/simplesaml/modules/toznyauth/enable \
     && apk del $buildDeps
 
 ENV TWIT_VERSION 1.1.0
@@ -47,6 +37,20 @@ RUN set -x \
     && chmod u+x /usr/local/bin/twit \
     && mkdir /lib64 \
     && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 \
+    && apk del $buildDeps
+
+ENV TOZNYAUTH_VERSION 1.0.0
+
+RUN set -x \
+    && buildDeps="ca-certificates wget" \
+    && apk add --no-cache $buildDeps && update-ca-certificates \
+    && rm -rf /var/cache/apk/* \
+    && wget https://github.com/tozny/simplesamlphp-toznyauth-external/releases/download/$TOZNYAUTH_VERSION/toznyauth.tgz -O /tmp/toznyauth.tgz \
+    && tar -xzf /tmp/toznyauth.tgz -C /tmp \
+    && mv /tmp/toznyauth /srv/simplesaml/modules/toznyauth \
+    && touch /srv/simplesaml/modules/toznyauth/enable \
+    && chown -R root:root /srv/simplesaml/modules/toznyauth \
+    && rm /tmp/toznyauth.tgz \
     && apk del $buildDeps
 
 WORKDIR /srv/simplesaml
