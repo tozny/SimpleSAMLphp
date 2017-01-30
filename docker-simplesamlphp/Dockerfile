@@ -6,11 +6,11 @@ FROM php:7.1-alpine
 
 MAINTAINER Eric Mann <eric@tozny.com>
 
-ENV SSP_VERSION 1.14.11
-ENV SSP_HASH 4899cae8e66967ad9fbf8dd0efe605b3a7c0f7a7c2c7a09e61470d623ca3a878
-
 COPY templates /srv/templates
 COPY params.yml.dist /params.default.yml
+
+ENV SSP_VERSION 1.14.11
+ENV SSP_HASH 4899cae8e66967ad9fbf8dd0efe605b3a7c0f7a7c2c7a09e61470d623ca3a878
 
 RUN set -x \
     && buildDeps="ca-certificates wget" \

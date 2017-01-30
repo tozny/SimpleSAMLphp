@@ -1,5 +1,5 @@
 saml:
-  image: tozny/simplesamlphp
+  image: tozny/simplesamlphp:tozny
   volumes:
     - ./params.yml:/params.yml
 
@@ -11,9 +11,9 @@ php:
     - 9000
 
 web:
-  image: nginx:latest
+  image: nginx:alpine
   ports:
-    - "8080:80"
+    - "8090:80"
   volumes:
     - ./site.conf:/etc/nginx/conf.d/default.conf
   volumes_from:
