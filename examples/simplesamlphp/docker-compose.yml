@@ -1,5 +1,5 @@
 saml:
-  image: tozny/simplesamlphp
+  image: tozny/simplesaml
   volumes:
     - ./params.yml:/params.yml
 
