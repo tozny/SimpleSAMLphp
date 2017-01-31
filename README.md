@@ -22,7 +22,7 @@ There are two example Docker Compose projects available to illustrate how the ne
 
 ### Configuration
 
-Create a configuration file called `/params.yml` that defines your authentication sources and metadata:
+Create a configuration file called `/params.yml` that defines your authentication sources and metadata (feel free to use `params.yml.dist` as an example):
  
 ```
 # params.yml
@@ -52,6 +52,8 @@ $ docker run -v $(pwd)/myparams.yml:/params.yml tozny/simplesamlphp
 ```
 
 or as a volume in `docker-compose.yml`. Either way, upon first run the container will automatically write SimpleSAMLphp's configuration files for you based on this document.
+
+The two stacks will run on `localhost`, the vanilla server will be exposed on port 8080 and the one with Tozny integrated on port 8090.
 
 Credits
 -------
