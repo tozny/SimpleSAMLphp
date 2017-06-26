@@ -11,13 +11,17 @@ if [ -z "$GEN_CERT" ]; then
 fi
 
 twit /srv/templates/authsources.php.tpl /srv/simplesaml/config/authsources.php \
-	--params=/params.default.yml --params=/params.yml --no-escape
+	--params=/params.default.yml --params=$PARAM_FILE --no-escape
 
 twit /srv/templates/config.php.tpl /srv/simplesaml/config/config.php \
-	--params=/params.default.yml --params=/params.yml --no-escape
+	--params=/params.default.yml --params=$PARAM_FILE --no-escape
 
 twit /srv/templates/saml20-idp-hosted.php.tpl \
 	/srv/simplesaml/metadata/saml20-idp-hosted.php \
-	--params=/params.default.yml --params=/params.yml --no-escape
+	--params=/params.default.yml --params=$PARAM_FILE --no-escape
+
+twit /srv/templates/saml20-sp-remote.php.tpl \
+	/srv/simplesaml/metadata/saml20-sp-remote.php \
+	--params=/params.default.yml --params=$PARAM_FILE --no-escape
 
 "$@"

@@ -13,7 +13,7 @@ php:
 web:
   image: nginx:alpine
   ports:
-    - "8080:80"
+    - "8081:80"
   volumes:
     - ./site.conf:/etc/nginx/conf.d/default.conf
   volumes_from:
