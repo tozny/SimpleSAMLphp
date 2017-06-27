@@ -10,7 +10,7 @@ $metadata['{{ $spremote.entityid }}'] = array(
    'AssertionConsumerService'      => '{{ $spremote.assertionconsumerservice }}',
    'NameIDFormat'                  => '{{ $spremote.nameidformat }}',
    'simplesaml.nameidattribute'    => '{{ $spremote.ssnameidattribute }}',
-   'simplesaml.attributes'         => '{{ $spremote.ssattributes }}',
+   'simplesaml.attributes'         =>  {{ $spremote.ssattributes | yesno "true" "false" }},
 );
 
 {{ end }}
